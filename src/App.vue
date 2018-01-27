@@ -8,22 +8,22 @@
 				 </button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				    <ul id="menubar" class="navbar-nav mr-auto">
-				      <li id="ProfileMenu" class="nav-item">
+				      <li id="ProfileMenu" v-on:click="setActiveNav('Profile')" class="nav-item">
 				        <a class="nav-link" href="#Profile">PROFILE <span class="sr-only">(current)</span></a>
 				      </li>
-				      <li id="TechnicalMenu" onclick="click('Technical')" class="nav-item">
+				      <li id="TechnicalMenu" v-on:click="setActiveNav('Technical')" class="nav-item">
 				        <a class="nav-link"  href="#Technical">SKILLS</a>
 				      </li>
-				      <li id="ExperienceMenu" class="nav-item">
+				      <li id="ExperienceMenu" v-on:click="setActiveNav('Experience')" class="nav-item">
 				        <a class="nav-link" href="#Experience">EXPERIENCE</a>
 				      </li>
-				      <li id="EducationMenu" class="nav-item">
+				      <li id="EducationMenu" v-on:click="setActiveNav('Education')" class="nav-item">
 				        <a class="nav-link" href="#Education">EDUCATION</a>
 				      </li>
-				      <li id="PortfolioMenu" class="nav-item">
+				      <li id="PortfolioMenu" v-on:click="setActiveNav('Portfolio')" class="nav-item">
 				        <a class="nav-link" href="#Portfolio">PORTFOLIO</a>
 				      </li>
-				      <li id="ContactMenu" class="nav-item">
+				      <li id="ContactMenu" v-on:click="setActiveNav('Contact')" class="nav-item">
 				        <a class="nav-link" href="#Contact">CONTACT</a>
 				      </li>
 				    </ul>
@@ -72,44 +72,157 @@ export default {
         Education: 'Portfolio',
         Portfolio: 'Contact'
       },
-      current_value: 0
+      reverse_nav_list: {
+        Profile: 'Hello',
+        Technical: 'Profile',
+        Experience: 'Technical',
+        Education: 'Experience',
+        Portfolio: 'Education',
+        Contact: 'Portfolio'
+      },
+      current_value: 641,
+      total_value: 0
     }
   },
   methods: {
-    setActiveNav (current) {
-      // console.log(current)
-      this.active_nav = current
+    setActiveNav: function (event) {
+      var navEdit = this.active_nav + 'Menu'
+      if (navEdit !== 'HelloMenu') {
+        document.getElementById(navEdit).classList.remove('active')
+      }
+      this.active_nav = event
+      var navEdit2 = this.active_nav + 'Menu'
+      var currentDiv = document.getElementById(this.active_nav).clientHeight
+      var scrollTopVal = document.documentElement.scrollTop
+      this.current_value = currentDiv
+      this.total_value = scrollTopVal + this.current_value
+      document.getElementById(navEdit2).className += ' active'
     },
+    // setActiveNav (current) {
+    //   console.log(current)
+    //   this.active_nav = current
+    // },
     handleScroll () {
       var activeNav = this.active_nav
-      console.log(activeNav)
-      var width = document.body.clientWidth
-      var fixedTop = document.getElementsByClassName('fixed-top')
-      var menubar = document.getElementById('menubar')
       var currentDiv = document.getElementById(activeNav).clientHeight
-      var topMenuHeight = menubar.clientHeight + 15
+
       var scrollTopVal = document.documentElement.scrollTop
       var currentHeighVal = scrollTopVal - currentDiv
-      var current = document.documentElement
-      console.log(current)
-      if (currentHeighVal < 0 && currentHeighVal > -80) {
-        this.active_nav = this.nav_list[activeNav]
-        console.log(this.active_nav)
-        var navEdit = this.active_nav + 'Menu'
-        console.log(navEdit)
-        document.getElementById(navEdit).className += ' active'
-      }
-      this.current_value = document.documentElement.scrollTop
-      var mod = (document.documentElement.scrollTop % 600)
-      if (mod === 0 && document.documentElement.scrollTop !== 0) {
-        var val = this.current_value / 600
-        document.getElementById(val.toString()).className += ' active'
-        if (this.active_nav != null) {
-          document.getElementById(this.active_nav.toString()).classList.remove('active')
-        }
+      var menubar = document.getElementById('menubar')
+      var navEdit
 
-        this.active_nav = val.toString()
+      // console.log(scrollTopVal - this.total_value)
+      // console.log(this.total_value)
+      // console.log(this.current_value)
+      // console.log(this.active_nav)
+
+      if (this.active_nav === 'Hello') {
+        if (scrollTopVal > this.current_value) {
+          this.total_value = this.total_value + this.current_value
+          this.active_nav = this.nav_list[this.active_nav]
+          currentDiv = document.getElementById(this.active_nav).clientHeight
+          this.current_value = currentDiv
+          navEdit = this.active_nav + 'Menu'
+          document.getElementById(navEdit).className += ' active'
+        }
+      } else if (this.active_nav === 'Contact') {
+        if (scrollTopVal - this.total_value < -200) {
+          document.getElementById(this.active_nav + 'Menu').classList.remove('active')
+          this.total_value = this.total_value - this.current_value
+          this.active_nav = this.reverse_nav_list[this.active_nav]
+          currentDiv = document.getElementById(this.active_nav).clientHeight
+          this.current_value = currentDiv
+          navEdit = this.active_nav + 'Menu'
+          document.getElementById(navEdit).className += ' active'
+        }
+      } else if (scrollTopVal - this.total_value > this.current_value + 80) {
+        document.getElementById(this.active_nav + 'Menu').classList.remove('active')
+        this.total_value = this.total_value + this.current_value
+        this.active_nav = this.nav_list[this.active_nav]
+        currentDiv = document.getElementById(this.active_nav).clientHeight
+        this.current_value = currentDiv
+        navEdit = this.active_nav + 'Menu'
+        document.getElementById(navEdit).className += ' active'
+      } else if (scrollTopVal - this.total_value < 0) {
+        if (this.active_nav === 'Profile') {
+          document.getElementById(this.active_nav + 'Menu').classList.remove('active')
+          this.total_value = 0
+          this.active_nav = 'Hello'
+          this.current_value = 641
+        } else {
+          document.getElementById(this.active_nav + 'Menu').classList.remove('active')
+          this.total_value = this.total_value - this.current_value
+          this.active_nav = this.reverse_nav_list[this.active_nav]
+          currentDiv = document.getElementById(this.active_nav).clientHeight
+          this.current_value = currentDiv
+          navEdit = this.active_nav + 'Menu'
+          document.getElementById(navEdit).className += ' active'
+        }
       }
+
+      // if (currentHeighVal > 80) {
+      //   console.log(this.current_value)
+      //   console.log(currentDiv)
+      //   if (this.current_value !== currentDiv) {
+      //     if (scrollTopVal - this.total_value > 0) {
+      //       if (this.active_nav !== 'Hello') {
+      //         document.getElementById(this.active_nav + 'Menu').classList.remove('active')
+      //       }
+      //       this.active_nav = this.nav_list[activeNav]
+      //       currentDiv = document.getElementById(this.active_nav).clientHeight
+      //       this.current_value = currentDiv
+      //       this.total_value = this.total_value + currentDiv
+      //     } else if (scrollTopVal - this.total_value < 0) {
+      //       this.active_nav = this.reverse_nav_list[activeNav]
+      //       currentDiv = document.getElementById(this.active_nav).clientHeight
+      //       this.total_value = this.total_value - currentDiv
+      //       this.current_value = currentDiv
+      //     }
+      //     navEdit = this.active_nav + 'Menu'
+      //     document.getElementById(navEdit).className += ' active'
+      //   } else if (this.active_nav !== 'Hello') {
+      //     console.log('"TEST"')
+      //     document.getElementById(this.active_nav + 'Menu').classList.remove('active')
+      //     this.current_value = 0
+      //     this.total_value = 641
+      //     this.active_nav = 'Hello'
+      //   } else {
+      //     console.log('"TEST 1"')
+      //     this.current_value = 398
+      //     this.total_value = this.total_value + 398
+      //     this.active_nav = this.nav_list[activeNav]
+      //     navEdit = this.active_nav + 'Menu'
+      //     document.getElementById(navEdit).className += ' active'
+      //   }
+      // } else if (currentHeighVal > 70) {
+      //   if (this.current_value === 641) {
+      //     this.current_value = 0
+      //   }
+      // }
+
+      var width = document.body.clientWidth
+      var fixedTop = document.getElementsByClassName('fixed-top')
+      var topMenuHeight = menubar.clientHeight + 15
+      var current = document.documentElement
+      var x = document.getElementsByTagName('div')
+      // console.log(x)
+      // console.log(currentHeighVal)
+      // if (currentHeighVal < 0 && currentHeighVal > -80) {
+      //   this.active_nav = this.nav_list[activeNav]
+      //   var navEdit = this.active_nav + 'Menu'
+      //   document.getElementById(navEdit).className += ' active'
+      // }
+      // this.current_value = document.documentElement.scrollTop
+      // var mod = (document.documentElement.scrollTop % 600)
+      // if (mod === 0 && document.documentElement.scrollTop !== 0) {
+      //   var val = this.current_value / 600
+      //   document.getElementById(val.toString()).className += ' active'
+      //   if (this.active_nav != null) {
+      //     document.getElementById(this.active_nav.toString()).classList.remove('active')
+      //   }
+
+      //   this.active_nav = val.toString()
+      // }
       if (width > 1096) {
         if (document.body.scrollTop >= 80 || document.documentElement.scrollTop >= 80) {
           fixedTop[0].style.backgroundColor = '#7B94BC'
