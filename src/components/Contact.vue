@@ -1,22 +1,24 @@
 <template>
   <div id="Contact" class="col-md-12">
   	<div class="title">
-		<p class="title_name">LET'S GET IN TOUCH</p>
+		<p class="title_name"><b>LET'S GET IN TOUCH</b></p>
+		<P> OOOPS SORRY CURRENTLY THIS FORM IS NOT WORKING, PLEASE EMAIL ME AT <b>NUTINTIN@YAHOO.COM.</b> THANKYOU!</p>
+		<p class="sub_title"> You can email me at <b><i>nutintin@yahoo.com</i></b> or Please Fill Form Below:</p>
   	</div>
   	<div class="row detail_contact">
 	  	<div class="col-md-12">
 		    <form >
 		      <div class="form-group">
 		        <label for="name">NAME:</label>
-		        <input type="name" class="form-control" id="name" placeholder="Enter Your Name" name="name">
+		        <input type="name" class="form-control" id="name" placeholder="Enter Your Name" name="name" disabled>
 		      </div>
 		      <div class="form-group">
 		        <label for="email">EMAIL:</label>
-		        <input type="email" class="form-control" id="email" placeholder="Enter Your Email" name="email">
+		        <input type="email" class="form-control" id="email" placeholder="Enter Your Email" name="email" disabled>
 		      </div>
 		      <div class="form-group">
 		        <label for="content">WHAT DO YOU HAVE IN MIND?:</label>
-		        <textarea class="form-control" rows="5" id="content"></textarea>
+		        <textarea class="form-control" rows="5" id="content" disabled></textarea>
 		      </div>
 		      <button type="submit" class="btn btn-default">Submit</button>
 		    </form>
@@ -45,6 +47,11 @@ export default {
 
 .title_name {
 	font-size: 100%;
+	margin-top: 5%;
+}
+
+.sub_title {
+	font-size: 50%;
 	margin-top: 5%;
 }
 

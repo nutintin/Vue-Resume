@@ -5,10 +5,11 @@
   	</div>
   	<div class="row detail_education">
 	  	<div class="col-md-12">
-
-	  			<a>BACHELOR DEGREE of COMPUTER SCIENCE</a>
+	  			<a>BACHELOR DEGREE of COMPUTER SCIENCE / SARJANA KOMPUTER ( S.Kom. )</a>
 	  			<p>BINA NUSANTARA UNIVERSITY, JAKARTA INDONESIA</p>
-				<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima.</p>
+				<p>I graduated in 2016 from Bina Nusantara University with GPA: 3.57.</p>
+				<p>My Field of Study is Computer Science, focus on Artificial Intelligence</p>
+				<p>My Journal Thesis : <a href="http://iptek.its.ac.id/index.php/jts/article/view/1018">http://iptek.its.ac.id/index.php/jts/article/view/1018</a></p>
 	  	</div>
 	 </div>
   </div>

@@ -29,11 +29,24 @@
 		  			</div>
 		  			<p>90%</p>
 					 <ul style="text-align:left">
-				         <li><a><span>VueJS: 10%</span></a></li>
-				         <li><a><span>NodeJS: 10%</span></a></li>
-				         <li><a><span>JS: 10%</span></a></li>
-				         <li><a><span>Test: 10%</span></a></li>
+				         <li><a><span>VueJS</span></a></li>
+				         <li><a><span>NodeJS</span></a></li>
+				         <li><a><span>JavaScript</span></a></li>
+				         <li><a><span>React Native</span></a></li>
 				     </ul>
+		  		</div>
+		  	</div>
+			<div class="col-md-2">
+
+		  		<div class="col-md-12">
+		  			<div class="text_technic">
+		  				<a>GOLANG</a>
+		  			</div>
+		  			<div class="box">
+		  				<div class="pie"></div>
+		  			</div>
+		  			<p>50%</p>
+					<p>My last project using go is build Microservices API</p>
 		  		</div>
 		  	</div>
 		  	<div class="col-md-2">
@@ -58,18 +71,6 @@
 		  				<div class="pie"></div>
 		  			</div>
 		  			<p>50% Feel Free if you want to invite me to go to your place :p</p>
-		  		</div>
-		  	</div>
-		  	<div class="col-md-2">
-
-		  		<div class="col-md-12">
-		  			<div class="text_technic">
-		  				<a>ART & MUSIC</a>
-		  			</div>
-		  			<div class="box">
-		  				<div class="pie pie1"></div>
-		  			</div>
-		  			<p>90% I love art & music.</p>
 		  		</div>
 		  	</div>
 		  	<div class="col-md-2">
