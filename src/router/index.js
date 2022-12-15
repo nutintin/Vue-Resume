@@ -1,21 +1,23 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import Profile from '@/components/Profile'
+import { createWebHistory, createRouter } from "vue-router";
+import HelloComponent from "@/components/Hello";
+import ProfileComponent from "@/components/Profile";
 
-Vue.use(Router)
+const routes = [
+  {
+    path: "/",
+    name: "HelloComponent",
+    component: HelloComponent,
+  },
+  {
+    path: "/Profile",
+    name: "ProfileComponent",
+    component: ProfileComponent,
+  },
+];
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello
-    },
-    {
-      path: '/Profile',
-      name: 'Profile',
-      component: Profile
-    }
-  ]
-})
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
+
+export default router;

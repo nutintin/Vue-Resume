@@ -2,7 +2,7 @@
 
 var utils = require('./utils')
 var webpack = require('webpack')
-var merge = require('webpack-merge')
+var {merge} = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 
 var webpackConfig = merge(baseWebpackConfig, {
@@ -10,7 +10,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders()
   },
-  devtool: '#inline-source-map',
+  devtool: 'inline-source-map',
   resolveLoader: {
     alias: {
       // necessary to to make lang="scss" work in test when using vue-loader's ?inject option

@@ -1,0 +1,2 @@
+,
+    "preinstall": "npx npm-force-resolutions"
