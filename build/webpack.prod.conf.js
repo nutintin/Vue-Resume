@@ -3,9 +3,9 @@
 const {merge} = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin')
 
-const baseWebpackConfig = require('./base')
-const cssWebpackConfig = require('./css')
-const config = require('../project.config')
+const baseWebpackConfig = require('./webpack.base.conf')
+const cssWebpackConfig = require('./webpack.css.conf')
+const config = require('./project.config')
 const terserOptions = require('./terserOptions')
 
 module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
